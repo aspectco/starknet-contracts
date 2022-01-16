@@ -1,0 +1,9 @@
+__pycache__/
+artifacts/
+env
+localhost.deployments.txt
+
+# vim temp files
+*~
+*.swp*
+
