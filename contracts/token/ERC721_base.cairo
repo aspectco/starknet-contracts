@@ -43,6 +43,23 @@ func ERC721_operator_approvals(owner: felt, operator: felt) -> (res: felt):
 end
 
 #
+# Events
+#
+
+@event
+func Transfer(_from: felt, to: felt, tokenId: Uint256):
+end
+
+@event
+func Approve(owner: felt, approved: felt, tokenId: Uint256):
+end
+
+@event
+func ApprovalForAll(owner: felt, operator: felt, approved: felt):
+end
+
+
+#
 # Constructor
 #
 
@@ -145,12 +162,12 @@ func ERC721_approve{
     # Checks that either caller equals owner or
     # caller isApprovedForAll on behalf of owner
     if caller == owner:
-        _approve(to, token_id)
+        _approve(owner, to, token_id)
         return ()
     else:
         let (is_approved) = ERC721_operator_approvals.read(owner, caller)
         assert_not_zero(is_approved)
-        _approve(to, token_id)
+        _approve(owner, to, token_id)
         return ()
     end
 end
@@ -169,6 +186,9 @@ func ERC721_setApprovalForAll{
     assert approved * (1 - approved) = 0
 
     ERC721_operator_approvals.write(owner=caller, operator=operator, value=approved)
+
+    # Emit ApprovalForAll event
+    ApprovalForAll.emit(owner=caller, operator=operator, approved=approved)
     return ()
 end
 
@@ -223,6 +243,9 @@ func ERC721_mint{
 
     # low + high felts = uint256
     ERC721_owners.write(token_id, to)
+
+    # Emit Transfer event
+    Transfer.emit(_from=0, to=to, tokenId=token_id)
     return ()
 end
 
@@ -235,7 +258,7 @@ func ERC721_burn{
     let (local owner) = ERC721_ownerOf(token_id)
 
     # Clear approvals
-    _approve(0, token_id)
+    _approve(owner, 0, token_id)
 
     # Decrease owner balance
     let (balance: Uint256) = ERC721_balances.read(owner)
@@ -244,6 +267,9 @@ func ERC721_burn{
 
     # Delete owner
     ERC721_owners.write(token_id, 0)
+
+    # Emit Transfer event
+    Transfer.emit(_from=owner, to=0, tokenId=token_id)
     return ()
 end
 
@@ -276,8 +302,9 @@ func _approve{
         syscall_ptr: felt*,
         pedersen_ptr: HashBuiltin*,
         range_check_ptr
-    }(to: felt, token_id: Uint256):
+    }(owner: felt, to: felt, token_id: Uint256):
     ERC721_token_approvals.write(token_id, to)
+    Approve.emit(owner=owner, approved=to, tokenId=token_id)
     return ()
 end
 
@@ -335,7 +362,7 @@ func _transfer{
     assert_not_zero(to)
 
     # Clear approvals
-    _approve(0, token_id)
+    _approve(_ownerOf, 0, token_id)
 
     # Decrease owner balance
     let (owner_bal) = ERC721_balances.read(_from)
@@ -350,6 +377,9 @@ func _transfer{
 
     # Update token_id owner
     ERC721_owners.write(token_id, to)
+
+    # Emit transfer event
+    Transfer.emit(_from=_from, to=to, tokenId=token_id)
     return ()
 end
 
