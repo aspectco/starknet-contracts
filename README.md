@@ -1,4 +1,4 @@
-# Oasis Cairo Contracts
+# Oasis ERC721 Cairo Contracts
 
 Deploy `/contracts/tokens/ERC721.cairo` to StarkNet to have the NFTs available for trading on [Oasis](https://playoasis.xyz/). Please see the [Cairo documentation](https://www.cairo-lang.org/docs/) for more information on deploying contracts.
 
