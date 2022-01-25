@@ -25,3 +25,11 @@ nile install
 
 - Discord: 0xSean#1534
 - Twitter: 0xs34n
+
+
+## Acknowledgements
+
+These contracts were inspired by or directly modified from many sources, primarily:
+
+- [OpenZeppelin](https://github.com/OpenZeppelin/cairo-contracts)
+
