@@ -6,7 +6,7 @@ Deploy `/contracts/tokens/ERC721.cairo` to StarkNet to have the NFTs available f
 
 ```
 python3 -m venv env
-source env/bin/active
+source env/bin/activate
 pip install git+https://github.com/OpenZeppelin/nile.git
 nile install
 ```
