@@ -1,4 +1,4 @@
-# ‼️ THIS REPO HAS BEEN MOVED [HERE](https://github.com/playoasis/cairo-contracts/tree/main/openzeppelin/token/erc721) ‼️
+# ‼️ THIS REPO HAS BEEN ARCHIVED AND MOVED [HERE](https://github.com/playoasis/cairo-contracts/tree/main/openzeppelin/token/erc721) ‼️
 
 We have moved to a fork of OZ.
 
