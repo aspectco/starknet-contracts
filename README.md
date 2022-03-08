@@ -1,3 +1,7 @@
+# ‼️ THIS REPO HAS BEEN MOVED [HERE](https://github.com/playoasis/cairo-contracts/tree/main/openzeppelin/token/erc721) ‼️
+
+We have moved to a fork of OZ.
+
 # Oasis ERC721 Cairo Contracts
 
 Deploy `/contracts/tokens/ERC721.cairo` to StarkNet to have the NFTs available for trading on [Oasis](https://playoasis.xyz/). Please see the [Cairo documentation](https://www.cairo-lang.org/docs/) for more information on deploying contracts.
