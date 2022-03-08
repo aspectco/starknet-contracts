@@ -1,6 +1,6 @@
 # ‼️ THIS REPO HAS BEEN MOVED [HERE](https://github.com/playoasis/cairo-contracts/tree/main/openzeppelin/token) ‼️
 
-We have moved to a fork of OZ.
+We have moved to a [fork of OZ](https://github.com/playoasis/cairo-contracts/tree/main/openzeppelin/token).
 
 # Oasis ERC721 Cairo Contracts
 
